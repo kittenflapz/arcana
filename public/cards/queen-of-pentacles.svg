@@ -1,0 +1,122 @@
+<svg width="700" height="1200" viewBox="0 0 700 1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="queen-of-pentacles-accent-glow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#3aa374" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#3aa374" stop-opacity="0.1"/>
+    </radialGradient>
+    <pattern id="queen-of-pentacles-pentacle-fill" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="10" cy="10" r="1" fill="#3aa374" opacity="0.2"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="700" height="1200" fill="#f7f4ef"/>
+  
+  <!-- Ornamental Border -->
+  <path id="queen-of-pentacles-border-frame" d="M40 40 L660 40 L660 1160 L40 1160 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="3"/>
+  
+  <!-- Corner Ornaments -->
+  <path id="queen-of-pentacles-corner-tl" d="M40 40 C80 40 80 80 80 80 C80 40 120 40 120 40 
+        C120 80 80 80 80 80 C80 120 40 120 40 120 C80 120 80 80 80 80 C40 80 40 40 40 40 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  
+  <path id="queen-of-pentacles-corner-tr" d="M660 40 C620 40 620 80 620 80 C620 40 580 40 580 40 
+        C580 80 620 80 620 80 C620 120 660 120 660 120 C620 120 620 80 620 80 C660 80 660 40 660 40 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  
+  <path id="queen-of-pentacles-corner-bl" d="M40 1160 C80 1160 80 1120 80 1120 C80 1160 120 1160 120 1160 
+        C120 1120 80 1120 80 1120 C80 1080 40 1080 40 1080 C80 1080 80 1120 80 1120 C40 1120 40 1160 40 1160 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  
+  <path id="queen-of-pentacles-corner-br" d="M660 1160 C620 1160 620 1120 620 1120 C620 1160 580 1160 580 1160 
+        C580 1120 620 1120 620 1120 C620 1080 660 1080 660 1080 C620 1080 620 1120 620 1120 C660 1120 660 1160 660 1160 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  
+  <!-- Sacred Geometry Grid -->
+  <circle id="queen-of-pentacles-grid-outer" cx="350" cy="600" r="280" 
+          fill="none" stroke="#0f0f11" stroke-width="1" opacity="0.3"/>
+  <circle id="queen-of-pentacles-grid-middle" cx="350" cy="600" r="200" 
+          fill="none" stroke="#0f0f11" stroke-width="1" opacity="0.2"/>
+  <circle id="queen-of-pentacles-grid-inner" cx="350" cy="600" r="120" 
+          fill="none" stroke="#0f0f11" stroke-width="1" opacity="0.2"/>
+  
+  <!-- Central Throne Silhouette -->
+  <path id="queen-of-pentacles-throne-base" d="M250 700 C250 680 270 660 300 660 L400 660 
+        C430 660 450 680 450 700 L450 800 C450 820 430 840 400 840 L300 840 
+        C270 840 250 820 250 800 Z" 
+        fill="url(#queen-of-pentacles-accent-glow)" stroke="#0f0f11" stroke-width="3"/>
+  
+  <path id="queen-of-pentacles-throne-back" d="M280 660 C280 600 300 550 350 520 
+        C400 550 420 600 420 660 L420 700 C420 720 400 740 380 740 L320 740 
+        C300 740 280 720 280 700 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  
+  <!-- Queen Figure Silhouette -->
+  <path id="queen-of-pentacles-figure" d="M320 580 C320 560 330 540 350 540 
+        C370 540 380 560 380 580 C380 600 370 620 350 620 C330 620 320 600 320 580 Z
+        M340 620 C340 640 345 660 350 680 C355 660 360 640 360 620
+        M330 650 C330 670 340 690 350 700 C360 690 370 670 370 650
+        M350 700 L350 750 M335 720 L365 720 M340 740 L360 740" 
+        fill="none" stroke="#0f0f11" stroke-width="4"/>
+  
+  <!-- Crown -->
+  <path id="queen-of-pentacles-crown" d="M330 540 C335 530 345 525 350 525 C355 525 365 530 370 540
+        L375 535 L380 540 L375 545 L370 540 L365 545 L360 540 L355 545 L350 540
+        L345 545 L340 540 L335 545 L330 540 L325 545 L330 540" 
+        fill="#3aa374" stroke="#0f0f11" stroke-width="2"/>
+  
+  <!-- Large Central Pentacle -->
+  <g id="queen-of-pentacles-main-pentacle">
+    <circle cx="350" cy="450" r="60" fill="url(#queen-of-pentacles-pentacle-fill)" 
+            stroke="#3aa374" stroke-width="3"/>
+    <path d="M350 390 L372 430 L420 430 L382 458 L394 502 L350 474 L306 502 L318 458 L280 430 L328 430 Z" 
+          fill="none" stroke="#0f0f11" stroke-width="3"/>
+  </g>
+  
+  <!-- Smaller Pentacles -->
+  <g id="queen-of-pentacles-side-pentacles">
+    <circle cx="200" cy="400" r="25" fill="none" stroke="#3aa374" stroke-width="2"/>
+    <path d="M200 375 L210 395 L230 395 L216 407 L221 427 L200 415 L179 427 L184 407 L170 395 L190 395 Z" 
+          fill="none" stroke="#0f0f11" stroke-width="2"/>
+    
+    <circle cx="500" cy="400" r="25" fill="none" stroke="#3aa374" stroke-width="2"/>
+    <path d="M500 375 L510 395 L530 395 L516 407 L521 427 L500 415 L479 427 L484 407 L470 395 L490 395 Z" 
+          fill="none" stroke="#0f0f11" stroke-width="2"/>
+  </g>
+  
+  <!-- Flowing Decorative Elements -->
+  <path id="queen-of-pentacles-flow-left" d="M150 500 C180 480 220 490 250 520 
+        C280 550 270 590 240 620 C210 650 170 640 150 610 
+        C130 580 140 540 150 500" 
+        fill="none" stroke="#0f0f11" stroke-width="2" opacity="0.7"/>
+  
+  <path id="queen-of-pentacles-flow-right" d="M550 500 C520 480 480 490 450 520 
+        C420 550 430 590 460 620 C490 650 530 640 550 610 
+        C570 580 560 540 550 500" 
+        fill="none" stroke="#0f0f11" stroke-width="2" opacity="0.7"/>
+  
+  <!-- Nurturing Vines -->
+  <path id="queen-of-pentacles-vine-left" d="M120 300 Q150 320 180 340 T240 380 
+        Q270 400 280 430 T290 480" 
+        fill="none" stroke="#3aa374" stroke-width="2" opacity="0.8"/>
+  
+  <path id="queen-of-pentacles-vine-right" d="M580 300 Q550 320 520 340 T460 380 
+        Q430 400 420 430 T410 480" 
+        fill="none" stroke="#3aa374" stroke-width="2" opacity="0.8"/>
+  
+  <!-- Earth/Grounding Elements -->
+  <path id="queen-of-pentacles-earth-base" d="M200 900 C250 880 300 885 350 900 
+        C400 885 450 880 500 900 C480 920 430 925 350 920 
+        C270 925 220 920 200 900 Z" 
+        fill="url(#queen-of-pentacles-accent-glow)" stroke="#0f0f11" stroke-width="2"/>
+  
+  <!-- Abundance Spirals -->
+  <path id="queen-of-pentacles-spiral-left" d="M180 800 A20 20 0 0 1 200 820 
+        A40 40 0 0 1 160 860 A60 60 0 0 1 220 920" 
+        fill="none" stroke="#3aa374" stroke-width="1.5" opacity="0.6"/>
+  
+  <path id="queen-of-pentacles-spiral-right" d="M520 800 A20 20 0 0 0 500 820 
+        A40 40 0 0 0 540 860 A60 60 0 0 0 480 920" 
+        fill="none" stroke="#3aa374" stroke-width="1.5" opacity="0.6"/>
+</svg>

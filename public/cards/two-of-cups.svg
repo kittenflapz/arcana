@@ -1,0 +1,131 @@
+<svg width="700" height="1200" viewBox="0 0 700 1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="two-of-cups-accent-glow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#4a90e2" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#4a90e2" stop-opacity="0.1"/>
+    </radialGradient>
+    <linearGradient id="two-of-cups-cup-fill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a90e2" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#4a90e2" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="700" height="1200" fill="#f7f4ef"/>
+  
+  <!-- Ornamental Border -->
+  <path id="two-of-cups-border-frame" d="M50 50 L650 50 L650 1150 L50 1150 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="3"/>
+  
+  <!-- Corner Ornaments -->
+  <path id="two-of-cups-corner-tl" d="M50 50 C80 50 100 70 100 100 C100 70 120 50 150 50 
+        C120 50 100 30 100 0 C100 30 80 50 50 50 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  
+  <path id="two-of-cups-corner-tr" d="M650 50 C620 50 600 70 600 100 C600 70 580 50 550 50 
+        C580 50 600 30 600 0 C600 30 620 50 650 50 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  
+  <path id="two-of-cups-corner-bl" d="M50 1150 C80 1150 100 1130 100 1100 C100 1130 120 1150 150 1150 
+        C120 1150 100 1170 100 1200 C100 1170 80 1150 50 1150 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  
+  <path id="two-of-cups-corner-br" d="M650 1150 C620 1150 600 1130 600 1100 C600 1130 580 1150 550 1150 
+        C580 1150 600 1170 600 1200 C600 1170 620 1150 650 1150 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  
+  <!-- Sacred Geometry Grid -->
+  <circle id="two-of-cups-circle-outer" cx="350" cy="600" r="280" 
+          fill="url(#two-of-cups-accent-glow)" stroke="#4a90e2" stroke-width="1" opacity="0.4"/>
+  
+  <circle id="two-of-cups-circle-inner" cx="350" cy="600" r="180" 
+          fill="none" stroke="#0f0f11" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Central Emblem - Two Cups in Balance -->
+  <g id="two-of-cups-central-emblem">
+    <!-- Left Cup -->
+    <path id="two-of-cups-cup-left" d="M250 550 C250 530 260 520 280 520 L320 520 
+          C340 520 350 530 350 550 L350 580 C350 620 330 650 300 650 
+          C270 650 250 620 250 580 Z" 
+          fill="url(#two-of-cups-cup-fill)" stroke="#0f0f11" stroke-width="2.5"/>
+    
+    <!-- Right Cup -->
+    <path id="two-of-cups-cup-right" d="M350 550 C350 530 360 520 380 520 L420 520 
+          C440 520 450 530 450 550 L450 580 C450 620 430 650 400 650 
+          C370 650 350 620 350 580 Z" 
+          fill="url(#two-of-cups-cup-fill)" stroke="#0f0f11" stroke-width="2.5"/>
+    
+    <!-- Cup Stems -->
+    <path id="two-of-cups-stem-left" d="M300 650 L300 700 C300 710 295 715 285 715 L275 715 
+          C265 715 260 710 260 700 L260 695 C260 690 265 685 275 685 L285 685 
+          C295 685 300 690 300 695 Z" 
+          fill="none" stroke="#0f0f11" stroke-width="2"/>
+    
+    <path id="two-of-cups-stem-right" d="M400 650 L400 700 C400 710 405 715 415 715 L425 715 
+          C435 715 440 710 440 700 L440 695 C440 690 435 685 425 685 L415 685 
+          C405 685 400 690 400 695 Z" 
+          fill="none" stroke="#0f0f11" stroke-width="2"/>
+    
+    <!-- Flowing Connection -->
+    <path id="two-of-cups-flow-connection" d="M300 580 C320 560 330 540 350 540 
+          C370 540 380 560 400 580 C390 590 370 595 350 595 C330 595 310 590 300 580 Z" 
+          fill="none" stroke="#4a90e2" stroke-width="3"/>
+    
+    <!-- Heart Symbol Above -->
+    <path id="two-of-cups-heart" d="M350 480 C340 470 325 470 320 480 C315 470 300 470 290 480 
+          C285 485 285 495 290 500 L350 540 L410 500 C415 495 415 485 410 480 
+          C400 470 385 470 380 480 C375 470 360 470 350 480 Z" 
+          fill="url(#two-of-cups-cup-fill)" stroke="#4a90e2" stroke-width="2"/>
+  </g>
+  
+  <!-- Symmetrical Motifs -->
+  <g id="two-of-cups-symmetry-motifs">
+    <!-- Left Spiral -->
+    <path id="two-of-cups-spiral-left" d="M180 400 C160 420 160 460 180 480 C200 500 240 500 260 480 
+          C280 460 280 420 260 400 C240 380 200 380 180 400" 
+          fill="none" stroke="#0f0f11" stroke-width="1.5"/>
+    
+    <!-- Right Spiral -->
+    <path id="two-of-cups-spiral-right" d="M520 400 C540 420 540 460 520 480 C500 500 460 500 440 480 
+          C420 460 420 420 440 400 C460 380 500 380 520 400" 
+          fill="none" stroke="#0f0f11" stroke-width="1.5"/>
+    
+    <!-- Lower Balance Symbol -->
+    <path id="two-of-cups-balance" d="M300 800 Q350 780 400 800 Q350 820 300 800" 
+          fill="none" stroke="#4a90e2" stroke-width="2"/>
+    
+    <!-- Infinity Loop -->
+    <path id="two-of-cups-infinity" d="M280 350 C260 330 240 330 220 350 C200 370 200 390 220 410 
+          C240 430 260 430 280 410 C300 390 300 370 280 350 
+          M420 350 C440 330 460 330 480 350 C500 370 500 390 480 410 
+          C460 430 440 430 420 410 C400 390 400 370 420 350" 
+          fill="none" stroke="#0f0f11" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Decorative Filigree -->
+  <g id="two-of-cups-filigree">
+    <!-- Top Ornament -->
+    <path id="two-of-cups-top-ornament" d="M350 200 C330 180 310 180 300 200 C310 220 330 220 350 200 
+          C370 220 390 220 400 200 C390 180 370 180 350 200" 
+          fill="none" stroke="#0f0f11" stroke-width="1"/>
+    
+    <!-- Bottom Ornament -->
+    <path id="two-of-cups-bottom-ornament" d="M350 1000 C330 1020 310 1020 300 1000 C310 980 330 980 350 1000 
+          C370 980 390 980 400 1000 C390 1020 370 1020 350 1000" 
+          fill="none" stroke="#0f0f11" stroke-width="1"/>
+    
+    <!-- Side Flourishes -->
+    <path id="two-of-cups-flourish-left" d="M120 600 C100 580 100 620 120 600 C140 580 140 620 120 600" 
+          fill="none" stroke="#4a90e2" stroke-width="1"/>
+    
+    <path id="two-of-cups-flourish-right" d="M580 600 C600 580 600 620 580 600 C560 580 560 620 580 600" 
+          fill="none" stroke="#4a90e2" stroke-width="1"/>
+  </g>
+  
+  <!-- Connecting Arcs -->
+  <path id="two-of-cups-arc-top" d="M200 300 A 150 150 0 0 1 500 300" 
+        fill="none" stroke="#0f0f11" stroke-width="1" opacity="0.5"/>
+  
+  <path id="two-of-cups-arc-bottom" d="M200 900 A 150 150 0 0 0 500 900" 
+        fill="none" stroke="#0f0f11" stroke-width="1" opacity="0.5"/>
+</svg>

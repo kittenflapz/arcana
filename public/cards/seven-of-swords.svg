@@ -1,0 +1,164 @@
+<svg width="700" height="1200" viewBox="0 0 700 1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="seven-of-swords-bg-gradient" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#f7f4ef"/>
+      <stop offset="100%" stop-color="#f0ede6"/>
+    </radialGradient>
+    <linearGradient id="seven-of-swords-accent-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7f8c99"/>
+      <stop offset="100%" stop-color="#6a7582"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="700" height="1200" fill="url(#seven-of-swords-bg-gradient)"/>
+  
+  <!-- Ornamental Border -->
+  <path id="seven-of-swords-border-frame" d="M40 40 L660 40 L660 1160 L40 1160 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="3"/>
+  
+  <!-- Corner Ornaments -->
+  <g id="seven-of-swords-corner-tl">
+    <path d="M40 40 C80 40 80 80 80 80 C80 40 120 40 120 40" 
+          fill="none" stroke="#0f0f11" stroke-width="2"/>
+    <path d="M60 60 C90 60 90 90 90 90" 
+          fill="none" stroke="#7f8c99" stroke-width="1.5"/>
+  </g>
+  
+  <g id="seven-of-swords-corner-tr">
+    <path d="M660 40 C620 40 620 80 620 80 C620 40 580 40 580 40" 
+          fill="none" stroke="#0f0f11" stroke-width="2"/>
+    <path d="M640 60 C610 60 610 90 610 90" 
+          fill="none" stroke="#7f8c99" stroke-width="1.5"/>
+  </g>
+  
+  <g id="seven-of-swords-corner-bl">
+    <path d="M40 1160 C80 1160 80 1120 80 1120 C80 1160 120 1160 120 1160" 
+          fill="none" stroke="#0f0f11" stroke-width="2"/>
+    <path d="M60 1140 C90 1140 90 1110 90 1110" 
+          fill="none" stroke="#7f8c99" stroke-width="1.5"/>
+  </g>
+  
+  <g id="seven-of-swords-corner-br">
+    <path d="M660 1160 C620 1160 620 1120 620 1120 C620 1160 580 1160 580 1160" 
+          fill="none" stroke="#0f0f11" stroke-width="2"/>
+    <path d="M640 1140 C610 1140 610 1110 610 1110" 
+          fill="none" stroke="#7f8c99" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Sacred Geometry Grid -->
+  <g id="seven-of-swords-geometry-grid" opacity="0.3">
+    <circle cx="350" cy="600" r="200" fill="none" stroke="#7f8c99" stroke-width="1"/>
+    <circle cx="350" cy="600" r="150" fill="none" stroke="#7f8c99" stroke-width="0.8"/>
+    <circle cx="350" cy="600" r="100" fill="none" stroke="#7f8c99" stroke-width="0.6"/>
+    
+    <path d="M350 400 L436.6 550 L263.4 550 Z" 
+          fill="none" stroke="#7f8c99" stroke-width="0.8"/>
+    <path d="M350 800 L263.4 650 L436.6 650 Z" 
+          fill="none" stroke="#7f8c99" stroke-width="0.8"/>
+  </g>
+  
+  <!-- Central Emblem - Seven Swords in Assessment Formation -->
+  <g id="seven-of-swords-central-emblem">
+    <!-- Central Sword - Vertical -->
+    <path d="M350 450 L350 750" stroke="#0f0f11" stroke-width="4" fill="none"/>
+    <path d="M340 450 C340 440 350 430 350 430 C360 430 360 440 360 450 L360 460 L340 460 Z" 
+          fill="#0f0f11"/>
+    <path d="M345 750 L355 750 L355 770 L345 770 Z" fill="#0f0f11"/>
+    
+    <!-- Six Surrounding Swords in Contemplative Circle -->
+    <g id="seven-of-swords-surrounding-swords">
+      <!-- Sword 1 - Top Right -->
+      <path d="M420 480 L380 520" stroke="#7f8c99" stroke-width="3" fill="none"/>
+      <path d="M420 480 C425 475 430 480 425 485 L415 485 Z" fill="#7f8c99"/>
+      
+      <!-- Sword 2 - Right -->
+      <path d="M450 600 L410 600" stroke="#7f8c99" stroke-width="3" fill="none"/>
+      <path d="M450 600 C455 595 460 600 455 605 L445 605 Z" fill="#7f8c99"/>
+      
+      <!-- Sword 3 - Bottom Right -->
+      <path d="M420 720 L380 680" stroke="#7f8c99" stroke-width="3" fill="none"/>
+      <path d="M420 720 C425 725 430 720 425 715 L415 715 Z" fill="#7f8c99"/>
+      
+      <!-- Sword 4 - Bottom Left -->
+      <path d="M280 720 L320 680" stroke="#7f8c99" stroke-width="3" fill="none"/>
+      <path d="M280 720 C275 725 270 720 275 715 L285 715 Z" fill="#7f8c99"/>
+      
+      <!-- Sword 5 - Left -->
+      <path d="M250 600 L290 600" stroke="#7f8c99" stroke-width="3" fill="none"/>
+      <path d="M250 600 C245 595 240 600 245 605 L255 605 Z" fill="#7f8c99"/>
+      
+      <!-- Sword 6 - Top Left -->
+      <path d="M280 480 L320 520" stroke="#7f8c99" stroke-width="3" fill="none"/>
+      <path d="M280 480 C275 475 270 480 275 485 L285 485 Z" fill="#7f8c99"/>
+    </g>
+  </g>
+  
+  <!-- Upper Motif - Scales of Assessment -->
+  <g id="seven-of-swords-scales-motif">
+    <path d="M350 200 L350 280" stroke="#0f0f11" stroke-width="2" fill="none"/>
+    <path d="M320 240 Q350 220 380 240" stroke="#0f0f11" stroke-width="2" fill="none"/>
+    
+    <!-- Left Scale -->
+    <path d="M320 240 C310 245 310 255 320 260 C330 255 330 245 320 240 Z" 
+          fill="none" stroke="#7f8c99" stroke-width="1.5"/>
+    <path d="M315 240 L325 240 L325 260 L315 260 Z" 
+          fill="none" stroke="#7f8c99" stroke-width="1"/>
+    
+    <!-- Right Scale -->
+    <path d="M380 240 C370 245 370 255 380 260 C390 255 390 245 380 240 Z" 
+          fill="none" stroke="#7f8c99" stroke-width="1.5"/>
+    <path d="M375 240 L385 240 L385 260 L375 260 Z" 
+          fill="none" stroke="#7f8c99" stroke-width="1"/>
+  </g>
+  
+  <!-- Lower Motif - Harvest Moon (Pause Between Sowing and Harvest) -->
+  <g id="seven-of-swords-harvest-moon">
+    <circle cx="350" cy="950" r="60" fill="none" stroke="#0f0f11" stroke-width="2"/>
+    <path d="M320 920 C340 900 360 900 380 920 C370 940 360 950 350 950 C340 950 330 940 320 920 Z" 
+          fill="none" stroke="#7f8c99" stroke-width="1.5"/>
+    
+    <!-- Crescent Detail -->
+    <path d="M330 930 Q350 910 370 930 Q350 940 330 930" 
+          fill="none" stroke="#7f8c99" stroke-width="1"/>
+    
+    <!-- Surrounding Stars -->
+    <g id="seven-of-swords-stars">
+      <path d="M300 900 L305 910 L295 910 Z M300 920 L305 910 L295 910" 
+            stroke="#7f8c99" stroke-width="1" fill="none"/>
+      <path d="M400 900 L405 910 L395 910 Z M400 920 L405 910 L395 910" 
+            stroke="#7f8c99" stroke-width="1" fill="none"/>
+      <path d="M320 880 L325 890 L315 890 Z M320 900 L325 890 L315 890" 
+            stroke="#7f8c99" stroke-width="1" fill="none"/>
+      <path d="M380 880 L385 890 L375 890 Z M380 900 L385 890 L375 890" 
+            stroke="#7f8c99" stroke-width="1" fill="none"/>
+    </g>
+  </g>
+  
+  <!-- Flowing Decorative Elements -->
+  <g id="seven-of-swords-flowing-curves">
+    <!-- Left Side Curves -->
+    <path d="M100 300 C150 320 150 380 100 400 C150 420 150 480 100 500" 
+          fill="none" stroke="#0f0f11" stroke-width="1.5" opacity="0.6"/>
+    <path d="M100 700 C150 720 150 780 100 800 C150 820 150 880 100 900" 
+          fill="none" stroke="#0f0f11" stroke-width="1.5" opacity="0.6"/>
+    
+    <!-- Right Side Curves -->
+    <path d="M600 300 C550 320 550 380 600 400 C550 420 550 480 600 500" 
+          fill="none" stroke="#0f0f11" stroke-width="1.5" opacity="0.6"/>
+    <path d="M600 700 C550 720 550 780 600 800 C550 820 550 880 600 900" 
+          fill="none" stroke="#0f0f11" stroke-width="1.5" opacity="0.6"/>
+  </g>
+  
+  <!-- Filigree Details -->
+  <g id="seven-of-swords-filigree">
+    <path d="M200 150 C220 140 240 160 220 180 C200 170 180 150 200 150" 
+          fill="none" stroke="#7f8c99" stroke-width="1" opacity="0.7"/>
+    <path d="M500 150 C480 140 460 160 480 180 C500 170 520 150 500 150" 
+          fill="none" stroke="#7f8c99" stroke-width="1" opacity="0.7"/>
+    <path d="M200 1050 C220 1040 240 1060 220 1080 C200 1070 180 1050 200 1050" 
+          fill="none" stroke="#7f8c99" stroke-width="1" opacity="0.7"/>
+    <path d="M500 1050 C480 1040 460 1060 480 1080 C500 1070 520 1050 500 1050" 
+          fill="none" stroke="#7f8c99" stroke-width="1" opacity="0.7"/>
+  </g>
+</svg>

@@ -1,8 +1,9 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import type { TarotCard } from '@/lib/tarot'
 import { Card } from '@/components/ui/card'
+import Image from 'next/image'
 
 interface TarotCardProps {
   card?: TarotCard
@@ -21,6 +22,47 @@ export function TarotCardComponent({
 }: TarotCardProps) {
   const [isFlipped, setIsFlipped] = useState(isRevealed)
   const [showDetails, setShowDetails] = useState(false)
+  const [imgIdx, setImgIdx] = useState(0)
+  const [naturalSize, setNaturalSize] = useState<{ w: number; h: number }>({ w: 3, h: 4 })
+
+  const srcCandidates = useMemo(() => {
+    if (!card) return [] as string[]
+    const id = card.id
+    const bases = new Set<string>([id])
+    const add = (b: string) => bases.add(b)
+    // with/without 'the-'
+    if (id.startsWith('the-')) add(id.replace(/^the-/, ''))
+    else add(`the-${id}`)
+    // suit synonyms for minors
+    if (card.arcana === 'minor') {
+      add(id.replace('-of-pentacles', '-of-coins'))
+      add(id.replace('-of-wands', '-of-rods'))
+      add(id.replace('-of-wands', '-of-batons'))
+      add(id.replace('-of-wands', '-of-staves'))
+      add(id.replace('-of-cups', '-of-chalices'))
+      add(id.replace('-of-swords', '-of-blades'))
+    }
+    // major synonyms
+    const altMajors: Record<string, string[]> = {
+      strength: ['fortitude'],
+      fortitude: ['strength'],
+      judgement: ['judgment'],
+      judgment: ['judgement'],
+      // Some APIs use "The Last Judgment". Our local asset is "judgement.jpeg".
+      'last-judgment': ['judgement', 'judgment'],
+      'last-judgement': ['judgement', 'judgment'],
+      'high-priestess': ['priestess']
+    }
+    if (altMajors[id]) {
+      for (const a of altMajors[id]) add(a)
+    }
+    const exts = ['.jpg', '.jpeg', '.png', '.webp', '.svg']
+    const out: string[] = []
+    for (const b of bases) for (const e of exts) out.push(`/cards/${b}${e}`)
+    return out
+  }, [card?.id])
+
+  useEffect(() => { setImgIdx(0) }, [card?.id])
 
   const handleClick = () => {
     if (!isRevealed) {
@@ -35,8 +77,9 @@ export function TarotCardComponent({
     onClick?.()
   }
 
+  const zLayer = showDetails ? 1000 : (isFlipped ? 10 : 1)
   return (
-    <div className={`perspective-1000 ${className}`}>
+    <div className={`perspective-1000 relative ${className}`} style={{ zIndex: zLayer }}>
       {position && (
         <h3 className="text-center text-arcana-secondary mb-4 font-serif text-lg">
           {position}
@@ -44,10 +87,14 @@ export function TarotCardComponent({
       )}
       
       <motion.div
-        className="relative w-60 h-80 mx-auto cursor-pointer"
+        className="relative w-60 mx-auto cursor-pointer"
         onClick={handleClick}
-        style={{ transformStyle: 'preserve-3d' }}
-        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        style={{ 
+          transformStyle: 'preserve-3d', 
+          aspectRatio: `${naturalSize.w} / ${naturalSize.h}`, 
+          zIndex: zLayer
+        }}
+        animate={{ rotateY: isFlipped ? 180 : 0, z: showDetails ? 80 : (isFlipped ? 20 : 0) }}
         transition={{ duration: 0.6, ease: 'easeInOut' }}
         whileHover={{ scale: isFlipped ? 1 : 1.05 }}
       >
@@ -68,10 +115,30 @@ export function TarotCardComponent({
         <Card className="absolute inset-0 backface-hidden bg-gradient-to-br from-slate-800 to-slate-900 border-arcana-primary overflow-hidden" 
               style={{ transform: 'rotateY(180deg)' }}>
           {/* Art layer */}
-          <div className="absolute inset-0 flex items-center justify-center select-none">
-            <div className={`text-2xl font-serif tracking-wide text-arcana-secondary ${showDetails ? 'opacity-50' : 'opacity-90'} transition-opacity`}>
-              ART HERE
-            </div>
+          <div className="absolute inset-0 select-none">
+            {card ? (
+              <Image
+                key={`${card.id}-${imgIdx}`}
+                src={srcCandidates[imgIdx] ?? `/cards/${card.id}.jpg`}
+                alt={card.name}
+                fill
+                sizes="240px"
+                className={`${showDetails ? 'opacity-60' : 'opacity-100'} object-contain transition-opacity`}
+                priority={false}
+                onError={() => {
+                  setImgIdx(i => (i + 1 < srcCandidates.length ? i + 1 : i))
+                }}
+                onLoadingComplete={(img) => {
+                  if (img.naturalWidth && img.naturalHeight) {
+                    setNaturalSize({ w: img.naturalWidth, h: img.naturalHeight })
+                  }
+                }}
+              />
+            ) : (
+              <div className={`absolute inset-0 flex items-center justify-center ${showDetails ? 'opacity-50' : 'opacity-90'} transition-opacity`}>
+                <div className="text-2xl font-serif tracking-wide text-arcana-secondary">ART HERE</div>
+              </div>
+            )}
           </div>
 
           {/* Details overlay */}

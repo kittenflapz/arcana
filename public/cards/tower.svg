@@ -1,0 +1,111 @@
+<svg width="700" height="1200" viewBox="0 0 700 1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="tower-bg-gradient" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#f7f4ef"/>
+      <stop offset="100%" stop-color="#f0f0e8"/>
+    </radialGradient>
+    <linearGradient id="tower-lightning-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7a5cff"/>
+      <stop offset="50%" stop-color="#f0c34a"/>
+      <stop offset="100%" stop-color="#7a5cff"/>
+    </linearGradient>
+    <pattern id="tower-stone-pattern" patternUnits="userSpaceOnUse" width="8" height="8">
+      <rect width="8" height="8" fill="#f7f4ef"/>
+      <path d="M0,4 L4,0 L8,4 L4,8 Z" fill="#0f0f11" opacity="0.05"/>
+    </pattern>
+  </defs>
+  
+  <rect width="700" height="1200" fill="url(#tower-bg-gradient)"/>
+  
+  <!-- Ornamental Border -->
+  <path id="tower-border-frame" d="M40,40 L660,40 L660,1160 L40,1160 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="3"/>
+  
+  <!-- Corner Ornaments -->
+  <path id="tower-corner-tl" d="M40,40 C60,20 80,20 100,40 C80,60 60,60 40,40 Z M50,50 C65,35 85,35 100,50" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  <path id="tower-corner-tr" d="M660,40 C640,20 620,20 600,40 C620,60 640,60 660,40 Z M650,50 C635,35 615,35 600,50" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  <path id="tower-corner-bl" d="M40,1160 C60,1180 80,1180 100,1160 C80,1140 60,1140 40,1160 Z M50,1150 C65,1165 85,1165 100,1150" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  <path id="tower-corner-br" d="M660,1160 C640,1180 620,1180 600,1160 C620,1140 640,1140 660,1160 Z M650,1150 C635,1165 615,1165 600,1150" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  
+  <!-- Sacred Geometry Grid -->
+  <g id="tower-geometry-grid" opacity="0.1">
+    <circle cx="350" cy="600" r="200" fill="none" stroke="#0f0f11" stroke-width="1"/>
+    <circle cx="350" cy="600" r="150" fill="none" stroke="#0f0f11" stroke-width="1"/>
+    <circle cx="350" cy="600" r="100" fill="none" stroke="#0f0f11" stroke-width="1"/>
+    <path d="M350,400 L476,650 L224,650 Z" fill="none" stroke="#0f0f11" stroke-width="1"/>
+  </g>
+  
+  <!-- Central Tower Structure -->
+  <path id="tower-main-structure" 
+        d="M280,800 C280,780 290,760 310,750 L310,400 C310,380 330,360 350,360 C370,360 390,380 390,400 L390,750 C410,760 420,780 420,800 L420,900 C420,920 400,940 380,940 L320,940 C300,940 280,920 280,900 Z" 
+        fill="url(#tower-stone-pattern)" stroke="#0f0f11" stroke-width="4"/>
+  
+  <!-- Tower Crown/Top -->
+  <path id="tower-crown" 
+        d="M300,360 C300,340 320,320 350,320 C380,320 400,340 400,360 L390,380 C385,370 370,365 350,365 C330,365 315,370 310,380 Z" 
+        fill="#f0c34a" stroke="#0f0f11" stroke-width="3"/>
+  
+  <!-- Lightning Bolt - Main -->
+  <path id="tower-lightning-main" 
+        d="M200,200 C220,180 240,190 250,220 L300,300 C310,320 320,340 340,350 L380,380 C400,390 420,410 430,440 L460,500 C470,520 480,540 490,560" 
+        fill="none" stroke="url(#tower-lightning-gradient)" stroke-width="6"/>
+  
+  <!-- Lightning Branches -->
+  <path id="tower-lightning-branch1" 
+        d="M320,340 C340,320 360,330 370,350 L390,380" 
+        fill="none" stroke="#7a5cff" stroke-width="3"/>
+  <path id="tower-lightning-branch2" 
+        d="M430,440 C450,420 470,430 480,450 L500,480" 
+        fill="none" stroke="#f0c34a" stroke-width="3"/>
+  
+  <!-- Crumbling Stones -->
+  <path id="tower-stone1" 
+        d="M250,850 C240,840 245,825 260,830 C275,835 280,850 270,860 C260,870 250,860 250,850 Z" 
+        fill="#0f0f11" opacity="0.3"/>
+  <path id="tower-stone2" 
+        d="M450,870 C460,860 475,865 470,880 C465,895 450,900 440,890 C430,880 440,870 450,870 Z" 
+        fill="#0f0f11" opacity="0.3"/>
+  <path id="tower-stone3" 
+        d="M320,920 Q330,910 340,920 Q330,930 320,920" 
+        fill="#0f0f11" opacity="0.2"/>
+  
+  <!-- Falling Crown Pieces -->
+  <path id="tower-crown-piece1" 
+        d="M180,600 C190,590 200,595 195,610 C190,625 180,630 170,620 C160,610 170,600 180,600 Z" 
+        fill="#f0c34a" stroke="#0f0f11" stroke-width="2"/>
+  <path id="tower-crown-piece2" 
+        d="M520,650 A15,15 0 0,1 535,665 A15,15 0 0,1 520,680 A15,15 0 0,1 505,665 A15,15 0 0,1 520,650" 
+        fill="#f0c34a" stroke="#0f0f11" stroke-width="2"/>
+  
+  <!-- Illumination Rays -->
+  <g id="tower-illumination" opacity="0.6">
+    <path d="M350,320 C350,300 360,280 380,270 C400,260 420,270 430,290" 
+          fill="none" stroke="#7a5cff" stroke-width="2"/>
+    <path d="M350,320 C350,300 340,280 320,270 C300,260 280,270 270,290" 
+          fill="none" stroke="#7a5cff" stroke-width="2"/>
+    <path d="M350,320 C370,310 390,300 410,290" 
+          fill="none" stroke="#f0c34a" stroke-width="1.5"/>
+    <path d="M350,320 C330,310 310,300 290,290" 
+          fill="none" stroke="#f0c34a" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Foundation Cracks -->
+  <path id="tower-crack1" 
+        d="M280,900 C290,910 300,920 310,930 S330,950 340,960" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  <path id="tower-crack2" 
+        d="M420,900 C410,910 400,920 390,930 S370,950 360,960" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  
+  <!-- Decorative Filigree -->
+  <path id="tower-filigree-left" 
+        d="M120,500 C140,480 160,490 170,510 C180,530 170,550 150,560 C130,570 110,560 100,540 C90,520 100,500 120,500 Z M130,520 C140,510 150,520 140,530" 
+        fill="none" stroke="#0f0f11" stroke-width="1.5"/>
+  <path id="tower-filigree-right" 
+        d="M580,500 C560,480 540,490 530,510 C520,530 530,550 550,560 C570,570 590,560 600,540 C610,520 600,500 580,500 Z M570,520 C560,510 550,520 560,530" 
+        fill="none" stroke="#0f0f11" stroke-width="1.5"/>
+</svg>

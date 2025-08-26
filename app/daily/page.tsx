@@ -5,9 +5,9 @@ import type { TarotCard } from '@/lib/tarot'
 import { JournalComponent } from '@/components/journal-component'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { Textarea } from '@/components/ui/textarea'
 import { drawThreeCardsAsync, getCardByIdAsync } from '@/lib/tarot'
 import { useArcana } from '@/lib/store'
+import { getApproxNextHomeMidnight } from '@/lib/time'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useRouter } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
@@ -25,10 +25,13 @@ export default function Daily() {
     setReading, 
     updateJournal,
     canReadToday,
+    readingCompletionPending,
+    confirmDayComplete,
     yearIntention,
     getOraclePersona 
   } = useArcana()
-  const { user, isAuthenticated } = useArcana()
+  const { user, isAuthenticated, timezoneMismatch, timezone, recomputeTime, pendingAbsenceNote, acknowledgeAbsenceNote } = useArcana()
+  const { consentCurrentEvents, consentPersonalizationWeatherTone, consentPersonalizationCalendarHints, calendarHintText } = useArcana()
   
   const [cards, setCards] = useState<TarotCard[] | null>(null)
   const [intention, setIntention] = useState('')
@@ -110,26 +113,34 @@ export default function Daily() {
       setOracleResponse(todaysReading.oracleResponse)
       setIntention(todaysReading.userIntention || '')
       
-      // If can't read today (already completed), show waiting state
-      if (!canReadToday) {
+      // If day was confirmed complete earlier, show waiting
+      if (!canReadToday && !readingCompletionPending) {
         setCurrentStep('waiting')
       } else {
         setCurrentStep('journal')
       }
     }
-  }, [todaysReading, canReadToday])
+  }, [todaysReading, canReadToday, readingCompletionPending])
 
-  // Countdown timer for next reading
+  // Recompute time on focus and interval for grant rollover & travel banner
+  useEffect(() => {
+    const onFocus = () => recomputeTime()
+    window.addEventListener('focus', onFocus)
+    const interval = setInterval(() => recomputeTime(), 60 * 1000)
+    return () => {
+      window.removeEventListener('focus', onFocus)
+      clearInterval(interval)
+    }
+  }, [recomputeTime])
+
+  // Countdown timer for next reading (home midnight)
   useEffect(() => {
     if (currentStep !== 'waiting') return
 
     const updateCountdown = () => {
-      const now = new Date()
-      const tomorrow = new Date(now)
-      tomorrow.setDate(tomorrow.getDate() + 1)
-      tomorrow.setHours(0, 0, 0, 0)
-      
-      const diff = tomorrow.getTime() - now.getTime()
+      const now = Date.now()
+      const next = getApproxNextHomeMidnight(now, timezone)
+      const diff = Math.max(0, next - now)
       
       if (diff <= 0) {
         // Next day has arrived, can read again
@@ -149,7 +160,7 @@ export default function Daily() {
     const timer = setInterval(updateCountdown, 1000)
     
     return () => clearInterval(timer)
-  }, [currentStep])
+  }, [currentStep, timezone])
 
   const handleDrawCards = async () => {
     const drawnCards = await drawThreeCardsAsync()
@@ -174,7 +185,12 @@ export default function Daily() {
         body: JSON.stringify({
           cards: cards.map(c => c.name),
           weekNumber: currentWeek,
-          intention: intention || yearIntention
+          intention: intention || yearIntention,
+          consent: {
+            currentEvents: consentCurrentEvents,
+            weatherTone: consentPersonalizationWeatherTone,
+            calendarHint: consentPersonalizationCalendarHints ? (calendarHintText || '') : null
+          }
         })
       })
       
@@ -229,6 +245,13 @@ export default function Daily() {
     <div className="min-h-screen bg-arcana-gradient p-4">
       <div className="max-w-4xl mx-auto py-8">
         
+        {/* Travel banner */}
+        {timezoneMismatch && (
+          <div className="mb-4 rounded-md border border-arcana-secondary/40 bg-arcana-surface/60 p-3 text-center">
+            <p className="text-arcana-secondary text-sm">Travel detected. Readings unlock at your home midnight ({timezone}).</p>
+          </div>
+        )}
+
         {/* Header (hidden in waiting view to avoid repetition) */}
         {currentStep !== 'waiting' && (
           <header className="text-center mb-12">
@@ -299,38 +322,13 @@ export default function Daily() {
                 ))}
               </div>
 
-              <Card className="bg-arcana-surface border-arcana-primary p-6">
-                <h2 className="text-xl font-serif text-white mb-4 text-center">
-                  Set Today's Intention
-                </h2>
-                
-                <div className="max-w-2xl mx-auto">
-                  <Textarea
-                    value={intention}
-                    onChange={(e) => setIntention(e.target.value)}
-                    placeholder="What brings you to today's reading? What do you hope to reflect on?"
-                    className="bg-arcana-surface border-arcana-secondary text-white placeholder:text-arcana-muted min-h-20 mb-4"
-                  />
-                  <p className="text-arcana-muted text-xs mb-6 text-center">
-                    Optional: This will guide the Oracle's response to your cards
-                  </p>
-                  
-                  <div className="text-center space-x-4">
-                    <Button 
-                      variant="outline"
-                      onClick={() => handleSetIntention()}
-                      className="bg-arcana-surface border-arcana-secondary text-arcana-secondary hover:bg-arcana-accent-hover"
-                    >
-                      Skip Intention
-                    </Button>
-                    <Button 
-                      onClick={handleSetIntention}
-                      className="btn-arcana-primary "
-                    >
-                      Consult the Oracle
-                    </Button>
-                  </div>
-                </div>
+              <Card className="bg-arcana-surface border-arcana-primary p-6 text-center">
+                <Button 
+                  onClick={handleSetIntention}
+                  className="btn-arcana-primary px-8 py-3"
+                >
+                  Consult the Oracle
+                </Button>
               </Card>
             </motion.div>
           )}
@@ -358,6 +356,14 @@ export default function Daily() {
               )}
 
               <Card className="bg-arcana-surface border-arcana-primary p-6">
+                {pendingAbsenceNote && (
+                  <div className="mb-4 rounded-md border border-arcana-secondary/40 bg-arcana-surface/60 p-3">
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="text-arcana-secondary text-sm">You missed a day. No worries—let this reading meet you where you are.</p>
+                      <button onClick={acknowledgeAbsenceNote} className="text-xs text-arcana-tertiary underline">OK</button>
+                    </div>
+                  </div>
+                )}
                 {isLoadingReading ? (
                   <div className="text-center py-12">
                     <motion.div
@@ -377,12 +383,19 @@ export default function Daily() {
                         {oracleResponse}
                       </ReactMarkdown>
                     </div>
-                    <div className="text-center">
+                    <div className="text-center space-x-3">
                       <Button 
                         onClick={() => setCurrentStep('journal')}
                         className="btn-arcana-primary "
                       >
                         Reflect & Journal
+                      </Button>
+                      <Button 
+                        variant="outline"
+                        onClick={() => { confirmDayComplete(); setCurrentStep('waiting') }}
+                        className="bg-arcana-surface border-arcana-secondary text-arcana-secondary hover:bg-arcana-accent-hover"
+                      >
+                        Complete Day {currentDay}
                       </Button>
                     </div>
                   </div>
@@ -430,9 +443,10 @@ export default function Daily() {
               <div className="text-center mt-6 space-x-4">
                 <Button 
                   variant="outline"
+                  onClick={() => { confirmDayComplete(); setCurrentStep('waiting') }}
                   className="bg-arcana-surface border-arcana-secondary text-arcana-secondary hover:bg-arcana-accent-hover"
                 >
-                  Save & Return Tomorrow
+                  Complete Day {currentDay}
                 </Button>
                 <Button 
                   onClick={() => router.push('/timeline')}

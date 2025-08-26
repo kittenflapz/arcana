@@ -1,0 +1,112 @@
+<svg width="700" height="1200" viewBox="0 0 700 1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="fool-center-glow" cx="50%" cy="45%" r="40%">
+      <stop offset="0%" stop-color="#7a5cff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#7a5cff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="fool-accent-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f0c34a" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#f0c34a" stop-opacity="0.3"/>
+    </linearGradient>
+    <pattern id="fool-sacred-dots" patternUnits="userSpaceOnUse" width="40" height="40">
+      <circle cx="20" cy="20" r="1" fill="#0f0f11" opacity="0.1"/>
+    </pattern>
+  </defs>
+  
+  <rect width="700" height="1200" fill="#f7f4ef"/>
+  <rect x="0" y="0" width="700" height="1200" fill="url(#fool-sacred-dots)"/>
+  <rect x="0" y="0" width="700" height="1200" fill="url(#fool-center-glow)"/>
+  
+  <!-- Ornamental Border -->
+  <path id="fool-border-frame" d="M40 40 L660 40 L660 1160 L40 1160 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="3"/>
+  
+  <!-- Corner Ornaments -->
+  <path id="fool-corner-tl" d="M40 40 C80 40 80 40 120 60 C140 70 150 90 140 110 C130 120 110 115 100 100 C90 85 70 70 40 70 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  <path id="fool-corner-tr" d="M660 40 C620 40 620 40 580 60 C560 70 550 90 560 110 C570 120 590 115 600 100 C610 85 630 70 660 70 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  <path id="fool-corner-bl" d="M40 1160 C80 1160 80 1160 120 1140 C140 1130 150 1110 140 1090 C130 1080 110 1085 100 1100 C90 1115 70 1130 40 1130 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  <path id="fool-corner-br" d="M660 1160 C620 1160 620 1160 580 1140 C560 1130 550 1110 560 1090 C570 1080 590 1085 600 1100 C610 1115 630 1130 660 1130 Z" 
+        fill="none" stroke="#0f0f11" stroke-width="2"/>
+  
+  <!-- Sacred Geometry Grid -->
+  <g id="fool-geometry-grid" opacity="0.15">
+    <circle cx="350" cy="300" r="120" fill="none" stroke="#0f0f11" stroke-width="1"/>
+    <circle cx="350" cy="600" r="180" fill="none" stroke="#0f0f11" stroke-width="1"/>
+    <circle cx="350" cy="900" r="100" fill="none" stroke="#0f0f11" stroke-width="1"/>
+    <path d="M350 180 L470 360 L230 360 Z" fill="none" stroke="#0f0f11" stroke-width="1"/>
+  </g>
+  
+  <!-- Central Figure - The Fool -->
+  <g id="fool-central-figure">
+    <!-- Figure silhouette -->
+    <path id="fool-figure-body" d="M350 400 C330 380 320 360 325 340 C330 320 345 315 350 315 C355 315 370 320 375 340 C380 360 370 380 350 400 
+             C350 420 345 440 350 460 C355 480 360 500 350 520 C340 540 330 560 340 580 C350 600 360 620 350 640" 
+          fill="none" stroke="#0f0f11" stroke-width="4"/>
+    
+    <!-- Flowing cloak -->
+    <path id="fool-cloak" d="M320 380 C300 390 280 410 290 440 C300 470 320 490 340 500 C360 510 380 500 400 490 C420 480 430 460 420 440 C410 420 390 400 370 390" 
+          fill="url(#fool-accent-gold)" stroke="#0f0f11" stroke-width="2"/>
+    
+    <!-- Staff/walking stick -->
+    <path id="fool-staff" d="M380 350 C390 340 400 330 410 340 C420 350 415 370 405 380 C395 390 385 400 375 410" 
+          fill="none" stroke="#7a5cff" stroke-width="3"/>
+    
+    <!-- Bundle on staff -->
+    <circle id="fool-bundle" cx="415" cy="335" r="8" fill="#f0c34a" stroke="#0f0f11" stroke-width="2"/>
+  </g>
+  
+  <!-- Cliff Edge Motif -->
+  <g id="fool-cliff-edge">
+    <path id="fool-cliff-main" d="M100 700 C150 680 200 690 250 700 C300 710 350 720 400 710 C450 700 500 690 550 700 C580 705 600 710 600 730 
+             L600 800 C580 820 550 830 500 825 C450 820 400 815 350 820 C300 825 250 830 200 825 C150 820 120 810 100 800 Z" 
+          fill="none" stroke="#0f0f11" stroke-width="3"/>
+    
+    <!-- Cliff details -->
+    <path id="fool-cliff-detail1" d="M180 720 Q200 710 220 720 T260 725" fill="none" stroke="#0f0f11" stroke-width="1.5"/>
+    <path id="fool-cliff-detail2" d="M320 725 Q340 715 360 725 T400 730" fill="none" stroke="#0f0f11" stroke-width="1.5"/>
+    <path id="fool-cliff-detail3" d="M440 720 Q460 710 480 720 T520 725" fill="none" stroke="#0f0f11" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Sun/Dawn Motif -->
+  <g id="fool-sun-motif">
+    <circle id="fool-sun-center" cx="350" cy="200" r="25" fill="#f0c34a" stroke="#0f0f11" stroke-width="2" opacity="0.8"/>
+    
+    <!-- Sun rays -->
+    <path id="fool-ray1" d="M350 150 C350 140 350 130 350 125" stroke="#f0c34a" stroke-width="2" stroke-linecap="round"/>
+    <path id="fool-ray2" d="M385 165 C390 160 395 155 398 152" stroke="#f0c34a" stroke-width="2" stroke-linecap="round"/>
+    <path id="fool-ray3" d="M395 200 C405 200 415 200 420 200" stroke="#f0c34a" stroke-width="2" stroke-linecap="round"/>
+    <path id="fool-ray4" d="M385 235 C390 240 395 245 398 248" stroke="#f0c34a" stroke-width="2" stroke-linecap="round"/>
+    <path id="fool-ray5" d="M315 165 C310 160 305 155 302 152" stroke="#f0c34a" stroke-width="2" stroke-linecap="round"/>
+    <path id="fool-ray6" d="M305 200 C295 200 285 200 280 200" stroke="#f0c34a" stroke-width="2" stroke-linecap="round"/>
+    <path id="fool-ray7" d="M315 235 C310 240 305 245 302 248" stroke="#f0c34a" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Flowing Energy Lines -->
+  <g id="fool-energy-flow" opacity="0.6">
+    <path id="fool-flow1" d="M200 300 C250 280 300 290 350 300 C400 310 450 300 500 320" 
+          fill="none" stroke="#7a5cff" stroke-width="1.5"/>
+    <path id="fool-flow2" d="M150 500 C200 480 250 490 300 500 C350 510 400 500 450 520 C500 540 550 530 580 550" 
+          fill="none" stroke="#7a5cff" stroke-width="1.5"/>
+    <path id="fool-flow3" d="M120 800 C170 780 220 790 270 800 C320 810 370 800 420 820 C470 840 520 830 570 850" 
+          fill="none" stroke="#7a5cff" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Decorative Flourishes -->
+  <g id="fool-flourishes">
+    <path id="fool-flourish1" d="M150 150 C160 140 170 145 175 155 C180 165 175 175 165 180 C155 175 150 165 150 155" 
+          fill="none" stroke="#0f0f11" stroke-width="1.5"/>
+    <path id="fool-flourish2" d="M550 150 C540 140 530 145 525 155 C520 165 525 175 535 180 C545 175 550 165 550 155" 
+          fill="none" stroke="#0f0f11" stroke-width="1.5"/>
+    <path id="fool-flourish3" d="M150 1050 C160 1040 170 1045 175 1055 C180 1065 175 1075 165 1080 C155 1075 150 1065 150 1055" 
+          fill="none" stroke="#0f0f11" stroke-width="1.5"/>
+    <path id="fool-flourish4" d="M550 1050 C540 1040 530 1045 525 1055 C520 1065 525 1075 535 1080 C545 1075 550 1065 550 1055" 
+          fill="none" stroke="#0f0f11" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Infinity Symbol -->
+  <path id="fool-infinity" d="M300 950 A30 20 0 1 1 350 950 A30 20 0 1 1 400 950 A30 20 0 1 1 350 950 A30 20 0 1 1 300 950" 
+        fill="none" stroke="#7a5cff" stroke-width="2"/>
+</svg>

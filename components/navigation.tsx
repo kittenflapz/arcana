@@ -37,7 +37,7 @@ export function Navigation() {
     { href: '/deck', label: 'Deck', show: true },
     { href: '/prologue', label: 'Prologue', show: !hasBegun },
     { href: '/daily', label: `Day ${currentDay}`, show: hasBegun },
-    { href: '/timeline', label: 'Journey', show: hasBegun },
+    { href: '/journey', label: 'Journey', show: hasBegun },
     { href: '/settings', label: 'Settings', show: isAuthenticated },
   ]
 

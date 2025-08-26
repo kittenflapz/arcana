@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
 import { TarotCardComponent } from '@/components/tarot-card'
 import { drawThreeCards, type TarotCard } from '@/lib/tarot'
 
@@ -12,6 +13,7 @@ export default function TestOracle() {
   const [loading, setLoading] = useState(false)
   const [intention, setIntention] = useState('')
   const [cards, setCards] = useState<TarotCard[] | null>(null)
+  const [previewWeek, setPreviewWeek] = useState<number>(1)
 
   const drawCards = () => {
     const drawnCards = drawThreeCards()
@@ -33,6 +35,7 @@ export default function TestOracle() {
         body: JSON.stringify({
           cards: cards.map(c => c.name),
           weekNumber: 1,
+          previewPersonaWeek: previewWeek,
           intention: intention || 'Testing the Oracle connection'
         })
       })
@@ -65,6 +68,7 @@ export default function TestOracle() {
         body: JSON.stringify({
           cards: cards.map(c => c.name),
           weekNumber: 20,
+          previewPersonaWeek: previewWeek,
           intention: intention || 'Testing evolved Oracle personality'
         })
       })
@@ -99,6 +103,27 @@ export default function TestOracle() {
                 className="bg-arcana-surface border-arcana-secondary text-white mt-2"
               />
             </div>
+
+            <div>
+              <Label htmlFor="previewWeek" className="text-arcana-secondary">
+                Persona Preview Week
+              </Label>
+              <div className="mt-2 flex items-center gap-3">
+                <Input
+                  id="previewWeek"
+                  type="number"
+                  min={1}
+                  max={52}
+                  value={previewWeek}
+                  onChange={(e) => {
+                    const next = parseInt(e.target.value || '1', 10)
+                    setPreviewWeek(Number.isFinite(next) ? Math.max(1, Math.min(52, next)) : 1)
+                  }}
+                  className="w-28 bg-arcana-surface border-arcana-secondary text-white"
+                />
+                <p className="text-arcana-tertiary text-sm">Preview the Oracle’s voice for any week (1–52)</p>
+              </div>
+            </div>
             
             <div className="flex gap-4">
               {!cards ? (
@@ -116,7 +141,7 @@ export default function TestOracle() {
                     disabled={loading}
                     className="flex-1"
                   >
-                    {loading ? 'Consulting Oracle...' : 'Week 1 Reading'}
+                    {loading ? 'Consulting Oracle...' : `Preview Week ${previewWeek}`}
                   </Button>
                   
                   <Button 
