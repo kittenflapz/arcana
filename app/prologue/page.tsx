@@ -7,13 +7,18 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { getCardsByArcana, getRandomCard, drawThreeCards, type TarotCard } from '@/lib/tarot'
 import { motion } from 'framer-motion'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import Link from 'next/link'
 
 export default function Prologue() {
   const { hasBegun, currentDay } = useArcana()
   const router = useRouter()
+  const [activeTab, setActiveTab] = useState<'explore' | 'practice'>('explore')
   const [selectedCard, setSelectedCard] = useState<TarotCard | null>(null)
   const [practiceReading, setPracticeReading] = useState<TarotCard[] | null>(null)
+  const [reading, setReading] = useState<string>('')
+  const [readingLoading, setReadingLoading] = useState(false)
   const [showAllCards, setShowAllCards] = useState(false)
 
   // Redirect active journey users to their current day
@@ -27,9 +32,35 @@ export default function Prologue() {
     }
   }, [hasBegun, currentDay, router])
 
-  const handlePracticeReading = () => {
-    const cards = drawThreeCards()
-    setPracticeReading(cards)
+  const handlePracticeReading = async () => {
+    const drawnCards = drawThreeCards()
+    setPracticeReading(drawnCards)
+    setReading('')
+    setReadingLoading(true)
+
+    try {
+      const response = await fetch('/api/oracle', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          cards: drawnCards.map(c => c.name),
+          weekNumber: 1,
+          previewPersonaWeek: 1,
+          intention: ''
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`)
+      }
+
+      const data = await response.json()
+      setReading(data.reading || '')
+    } catch (error) {
+      setReading('The Oracle is temporarily silent. Please try again in a moment.')
+    } finally {
+      setReadingLoading(false)
+    }
   }
 
   const majorArcana = getCardsByArcana('major')
@@ -51,11 +82,28 @@ export default function Prologue() {
           </p>
         </header>
 
-        {/* Two-column layout */}
-        <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          
-          {/* Left: Card Exploration */}
-          <div>
+        {/* Tabs */}
+        <div className="max-w-6xl mx-auto">
+          <div className="flex justify-center gap-6 border-b border-arcana-subtle mb-8">
+            <button
+              className={`pb-3 text-sm font-medium ${activeTab === 'explore' ? 'text-white border-b-2 border-arcana-primary' : 'text-arcana-secondary hover:text-white'}`}
+              onClick={() => setActiveTab('explore')}
+            >
+              Discover the Arcana
+            </button>
+            <button
+              className={`pb-3 text-sm font-medium ${activeTab === 'practice' ? 'text-white border-b-2 border-arcana-primary' : 'text-arcana-secondary hover:text-white'}`}
+              onClick={() => setActiveTab('practice')}
+            >
+              Try a Practice Reading
+            </button>
+          </div>
+        </div>
+
+        {/* Tab Content */}
+        <div className="max-w-6xl mx-auto">
+          {activeTab === 'explore' && (
+            <div>
             <h2 className="text-2xl font-serif text-white mb-6">
               Discover the Arcana
             </h2>
@@ -65,12 +113,21 @@ export default function Prologue() {
                 <Card className="bg-arcana-surface border-arcana-primary p-6">
                   <div className="text-center">
                     <div 
-                      className="w-32 h-40 mx-auto mb-4 bg-arcana-accent rounded-lg border border-arcana-subtle flex items-center justify-center cursor-pointer hover:bg-arcana-accent-hover transition-colors"
-                      onClick={() => setSelectedCard(getRandomCard())}
+                      className="mb-4 flex items-center justify-center min-h-[420px]"
+                      onClick={() => !selectedCard && setSelectedCard(getRandomCard())}
                     >
-                      <span className="text-arcana-tertiary text-center px-2">
-                        {selectedCard ? selectedCard.name : 'Tap to draw'}
-                      </span>
+                      {selectedCard ? (
+                        <TarotCardComponent 
+                          card={selectedCard}
+                          isRevealed={true}
+                        />
+                      ) : (
+                        <div className="w-32 h-40 bg-arcana-accent rounded-lg border border-arcana-subtle flex items-center justify-center cursor-pointer hover:bg-arcana-accent-hover transition-colors">
+                          <span className="text-arcana-tertiary text-center px-2">
+                            Tap to draw
+                          </span>
+                        </div>
+                      )}
                     </div>
                     <Button 
                       variant="outline" 
@@ -82,27 +139,18 @@ export default function Prologue() {
                   </div>
                 </Card>
 
-                <Button 
-                  variant="outline" 
-                  onClick={() => setShowAllCards(true)}
-                  className="w-full bg-arcana-surface border-arcana-secondary text-arcana-secondary hover:bg-arcana-accent-hover"
-                >
-                  Browse All 22 Major Arcana
-                </Button>
+                <div className="text-center">
+                  <Link href="/deck">
+                    <Button 
+                      variant="outline" 
+                      className="bg-arcana-surface border-arcana-secondary text-arcana-secondary hover:bg-arcana-accent-hover"
+                    >
+                      Browse the Deck
+                    </Button>
+                  </Link>
+                </div>
 
-                {selectedCard && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-6"
-                  >
-                    <TarotCardComponent 
-                      card={selectedCard} 
-                      isRevealed={true}
-                      className="scale-75 origin-top"
-                    />
-                  </motion.div>
-                )}
+                
               </div>
             ) : (
               <div>
@@ -134,54 +182,76 @@ export default function Prologue() {
               </div>
             )}
           </div>
+          )}
 
-          {/* Right: Practice Reading */}
-          <div>
-            <h2 className="text-2xl font-serif text-white mb-6">
-              Try a Practice Reading
-            </h2>
-            
-            <Card className="bg-arcana-surface border-arcana-primary p-6 mb-6">
-              <p className="text-arcana-secondary text-sm mb-4 leading-relaxed">
-                This is not your real reading—that comes when you begin your year. 
-                This is just to feel the rhythm of the cards and the Oracle's voice.
-              </p>
+          {activeTab === 'practice' && (
+            <div>
+              <h2 className="text-2xl font-serif text-white mb-6">
+                Try a Practice Reading
+              </h2>
               
-              <Button 
-                onClick={handlePracticeReading}
-                className="w-full btn-arcana-primary"
-              >
-                Draw Three Practice Cards
-              </Button>
-            </Card>
-
-            {practiceReading && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="space-y-6"
-              >
-                <div className="grid grid-cols-3 gap-4">
-                  {practiceReading.map((card, index) => (
-                    <TarotCardComponent 
-                      key={card.id}
-                      card={card} 
-                      isRevealed={true}
-                      className="scale-50 origin-top"
-                      position={['Past', 'Present', 'Potential'][index]}
-                    />
-                  ))}
-                </div>
+              <Card className="bg-arcana-surface border-arcana-primary p-6 mb-6 max-w-2xl mx-auto text-center">
+                <p className="text-arcana-secondary text-sm mb-4 leading-relaxed">
+                  This is not your real reading—that comes when you begin your year. 
+                  This is just to feel the rhythm of the cards and the Oracle's voice.
+                </p>
                 
-                <Card className="bg-arcana-surface border-arcana-primary p-4">
-                  <p className="text-arcana-tertiary text-sm italic text-center">
-                    "The Oracle remains silent during the Prologue. 
-                    When you begin your year, the readings will come alive."
-                  </p>
-                </Card>
-              </motion.div>
-            )}
-          </div>
+                <Button 
+                  onClick={handlePracticeReading}
+                  className="btn-arcana-primary px-6 mx-auto"
+                  disabled={readingLoading}
+                >
+                  {readingLoading ? 'Consulting Oracle…' : 'Draw Three Practice Cards'}
+                </Button>
+              </Card>
+
+              {practiceReading && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="space-y-8"
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    {practiceReading.map((card, index) => (
+                      <div key={card.id} className="flex flex-col items-center">
+                        <TarotCardComponent 
+                          card={card} 
+                          isRevealed={true}
+                          position={['Past', 'Present', 'Potential'][index]}
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  {(readingLoading || reading) && (
+                    <Card className="bg-arcana-surface border-arcana-primary p-6">
+                      {readingLoading ? (
+                        <div className="text-center py-12">
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+                            className="w-8 h-8 border-2 border-arcana-accent-light border-t-transparent rounded-full mx-auto mb-4"
+                          />
+                          <p className="text-arcana-secondary">The Oracle contemplates your cards...</p>
+                        </div>
+                      ) : (
+                        <div>
+                          <h2 className="text-xl font-serif text-white mb-4 text-center">
+                            The Oracle Speaks
+                          </h2>
+                          <div className="prose prose-invert max-w-none mb-0 prose-headings:font-serif prose-h1:text-white prose-h2:text-white prose-strong:text-arcana-secondary prose-a:text-arcana-tertiary">
+                            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                              {reading}
+                            </ReactMarkdown>
+                          </div>
+                        </div>
+                      )}
+                    </Card>
+                  )}
+                </motion.div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Call to Action - Begin Year */}

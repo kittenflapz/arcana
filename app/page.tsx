@@ -23,25 +23,12 @@ export default function Home() {
         {/* Actions Section */}
         <section className="max-w-2xl mx-auto mb-16">
           <div className="text-center space-y-8">
-            {/* Conditional Practice Reading - only show if journey hasn't begun */}
+            {/* Authenticated but not begun: single Start Prologue button */}
             {isAuthenticated && !hasBegun && (
               <div className="space-y-4">
-                <Link href="/test-oracle">
-                  <Button variant="outline" size="lg" className="bg-arcana-surface border-arcana-secondary text-arcana-secondary hover:bg-arcana-accent-hover">
-                    Try a Practice Reading
-                  </Button>
-                </Link>
-                
                 <Link href="/prologue">
-                  <Button size="lg" className="btn-arcana-primary flex items-center gap-2">
-                    {/* Google "G" mark */}
-                    <svg aria-hidden="true" className="size-4" viewBox="0 0 48 48">
-                      <path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303C33.932 32.329 29.396 36 24 36c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C33.508 6.053 28.973 4 24 4 12.954 4 4 12.954 4 24s8.954 20 20 20c10 0 19-7.5 19-20 0-1.341-.144-2.333-.389-3.917z"/>
-                      <path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.627 15.261 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C33.508 6.053 28.973 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/>
-                      <path fill="#4CAF50" d="M24 44c5.313 0 10.185-1.998 13.857-5.262l-6.402-5.408C29.386 34.465 26.861 35.5 24 35.5c-5.371 0-9.895-3.641-11.5-8.573l-6.57 5.053C9.236 38.877 16.011 44 24 44z"/>
-                      <path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303c-1.03 3.194-3.49 5.605-6.846 6.825l6.402 5.408C37.882 37.904 40 31.5 40 24c0-1.341-.144-2.333-.389-3.917z"/>
-                    </svg>
-                    Begin Your Journey
+                  <Button variant="outline" size="lg" className="bg-arcana-surface border-arcana-secondary text-arcana-secondary hover:bg-arcana-accent-hover">
+                    Start Prologue
                   </Button>
                 </Link>
               </div>
@@ -49,7 +36,7 @@ export default function Home() {
             
             {/* Practice Reading for unauthenticated users */}
             {!isAuthenticated && (
-              <Link href="/test-oracle">
+              <Link href="/prologue">
                 <Button variant="outline" size="lg" className="bg-arcana-surface border-arcana-secondary text-arcana-secondary hover:bg-arcana-accent-hover">
                   Try a Practice Reading
                 </Button>
