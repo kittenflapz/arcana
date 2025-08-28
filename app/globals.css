@@ -48,10 +48,10 @@
 :root {
   --radius: 0.625rem;
   
-  /* Arcana Color Palette */
-  --arcana-bg-gradient-start: rgb(2 6 23);      /* slate-950 */
-  --arcana-bg-gradient-mid: rgb(30 58 138);     /* blue-900 */
-  --arcana-bg-gradient-end: rgb(30 27 75);      /* indigo-950 */
+  /* Arcana Color Palette (Dusk→Violet→Amber gradient) */
+  --arcana-bg-gradient-start: rgb(10 16 36);     /* deep indigo-navy */
+  --arcana-bg-gradient-mid: rgb(74 45 119);      /* violet */
+  --arcana-bg-gradient-end: rgb(190 96 58);      /* warm amber */
   
   --arcana-text-primary: rgb(255 255 255);      /* white */
   --arcana-text-secondary: rgb(191 219 254);    /* blue-200 */
@@ -143,8 +143,13 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
-    background: linear-gradient(to bottom right, var(--arcana-bg-gradient-start), var(--arcana-bg-gradient-mid), var(--arcana-bg-gradient-end));
-    background-attachment: fixed;
+    /* Layered background: grain SVG → soft vignette → main gradient */
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.08'/></svg>"),
+      radial-gradient(120% 80% at 50% 20%, rgba(255 255 255 / 0.06) 0%, rgba(255 255 255 / 0) 60%),
+      linear-gradient(to bottom, var(--arcana-bg-gradient-start), var(--arcana-bg-gradient-mid) 55%, var(--arcana-bg-gradient-end));
+    background-blend-mode: overlay, soft-light, normal;
+    background-attachment: fixed, fixed, fixed;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
@@ -154,7 +159,11 @@
 @layer utilities {
   /* Arcana Theme Utilities */
   .bg-arcana-gradient {
-    background: linear-gradient(to bottom right, var(--arcana-bg-gradient-start), var(--arcana-bg-gradient-mid), var(--arcana-bg-gradient-end));
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.08'/></svg>"),
+      radial-gradient(120% 80% at 50% 20%, rgba(255 255 255 / 0.06) 0%, rgba(255 255 255 / 0) 60%),
+      linear-gradient(to bottom, var(--arcana-bg-gradient-start), var(--arcana-bg-gradient-mid) 55%, var(--arcana-bg-gradient-end));
+    background-blend-mode: overlay, soft-light, normal;
   }
   
   .text-arcana-primary { color: var(--arcana-text-primary); }

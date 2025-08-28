@@ -28,13 +28,18 @@ export async function POST(request: NextRequest) {
     
     const response = await anthropic.messages.create({
       model: 'claude-sonnet-4-20250514',
-      max_tokens: 220,
+      max_tokens: 900,
       temperature: snapshot.style.temperature,
       messages: [{ role: 'user', content: prompt }]
     })
+
+    const readingText = response.content
+      .map(part => (part.type === 'text' ? part.text : ''))
+      .join('')
+      .trim()
     
     return Response.json({ 
-      reading: response.content[0].type === 'text' ? response.content[0].text : 'The Oracle speaks in silence.',
+      reading: readingText || 'The Oracle speaks in silence.',
       cards,
       weekNumber: effectiveWeek,
       persona: snapshot.persona,

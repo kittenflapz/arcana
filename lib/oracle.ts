@@ -192,7 +192,7 @@ export async function buildOraclePrompt(
   // Consent-driven context hints (soft influence only)
   const consentLines: string[] = []
   if (opts?.consent?.currentEvents) {
-    consentLines.push('If relevant, you may weave subtle public-current motifs (no news specifics).')
+    consentLines.push('If relevant, you may weave subtle public-current motifs.')
   }
   if (opts?.consent?.weatherTone) {
     consentLines.push('You may mirror local weather as tone (e.g., soft rain, bright chill).')
